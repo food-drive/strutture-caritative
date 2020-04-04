@@ -1,0 +1,28 @@
+name: Build, Test and Deploy
+# This workflow is triggered on pushes to the repository.
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build, test and Deploy to GH Pages
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ['12', '10']
+    steps:
+      - name: Check out
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm install
+      - run: npm run lint
+      - run: npm run build
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.ACTIONS_TOKEN }}
+          publish_dir: ./public

@@ -1,0 +1,39 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "loose": true,
+        "modules": false,
+        "shippedProposals": true,
+        "targets": {
+          "browsers": ["last 2 version"]
+        }
+      }
+    ],
+    [
+      "@babel/preset-react",
+      {
+        "useBuiltIns": true,
+        "pragma": "React.createElement"
+      }
+    ]
+  ],
+  "plugins": [
+    [
+      "@babel/plugin-proposal-class-properties",
+      {
+        "loose": true
+      }
+    ],
+    "@babel/plugin-syntax-dynamic-import",
+    "babel-plugin-macros",
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "helpers": true,
+        "regenerator": true
+      }
+    ]
+  ]
+}
