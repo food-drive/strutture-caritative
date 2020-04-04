@@ -16,7 +16,7 @@ jobs:
       PROJECT_ID: ${{ secrets.PROJECT_ID }}
       SERVICE_ACCOUNT: ${{ secrets.SERVICE_ACCOUNT }}
       PRIVATE_KEY_ID: ${{ secrets.PRIVATE_KEY_ID }}
-      PRIVATE_KE: ${{ secrets.PRIVATE_KEY }}
+      PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
       CLIENT_ID: ${{ secrets.CLIENT_ID }}
       SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID }}
     steps:
