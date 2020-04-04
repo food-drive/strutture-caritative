@@ -13,12 +13,12 @@ jobs:
       matrix:
         node: ['12', '10']
     env:
-      PROJECT_ID: ${{PROJECT_ID}}
-      SERVICE_ACCOUNT: ${{SERVICE_ACCOUNT}}
-      PRIVATE_KEY_ID: ${{PRIVATE_KEY_ID}}
-      PRIVATE_KE: ${{PRIVATE_KEY}}
-      CLIENT_ID: ${{CLIENT_ID}}
-      SPREADSHEET_ID: ${{SPREADSHEET_ID}}
+      PROJECT_ID: ${{ secrets.PROJECT_ID }}
+      SERVICE_ACCOUNT: ${{ secrets.SERVICE_ACCOUNT }}
+      PRIVATE_KEY_ID: ${{ secrets.PRIVATE_KEY_ID }}
+      PRIVATE_KE: ${{ secrets.PRIVATE_KEY }}
+      CLIENT_ID: ${{ secrets.CLIENT_ID }}
+      SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID }}
     steps:
       - name: Check out
         uses: actions/checkout@v2
