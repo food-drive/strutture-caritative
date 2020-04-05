@@ -14,7 +14,7 @@ const HomePage = ({
     allGoogleSheetAnagraficaRow: {edges: data},
   },
 }) => {
-  const [view, setView] = useState(1)
+  const [view, setView] = useState(0)
   const handleChange = (event, newView) => setView(newView)
   return (
     <DataProvider data={data}>
