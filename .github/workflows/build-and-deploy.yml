@@ -19,6 +19,7 @@ jobs:
       PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
       CLIENT_ID: ${{ secrets.CLIENT_ID }}
       SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID }}
+      GATSBY_GOOGLE_MAPS_API_KEY: ${{ secrets.GATSBY_GOOGLE_MAPS_API_KEY }}
     steps:
       - name: Check out
         uses: actions/checkout@v2

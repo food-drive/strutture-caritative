@@ -10,15 +10,15 @@ const cols = [
   {key: 'denominazioneopt', value: 'Denominazione Opt'},
   {key: 'comune', value: 'Comune'},
   {key: 'provincia', value: 'Provincia'},
-  {key: 'sedeoperativa', value: 'Sede Operativa'},
-  {key: 'telefonosedeoperativa', value: 'Telefono Sede Operativa'},
+  {key: 'sedeoperativa', value: 'Indirizzo'},
+  {key: 'telefonosedeoperativa', value: 'Telefono'},
 ]
 
 const filters = [
   {key: 'denominazioneopt', label: 'Denominazione'},
   {key: 'comune', label: 'Comune'},
   {key: 'provincia', label: 'Provincia'},
-  {key: 'sedeoperativa', label: 'Sede Operativa'},
+  {key: 'sedeoperativa', label: 'Indirizzo'},
 ]
 
 const DataProvider = ({data, children}) => {
