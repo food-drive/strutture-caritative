@@ -39,8 +39,12 @@ const DataProvider = ({data, children}) => {
         ),
     [data, activeFilters],
   )
+  const coordinates = useMemo(
+    () => rows.filter(({latitudine, longitudine}) => latitudine && longitudine),
+    [rows],
+  )
   return (
-    <Provider value={{rows, cols, filters, dispatchFilter}}>
+    <Provider value={{coordinates, rows, cols, filters, dispatchFilter}}>
       {children}
     </Provider>
   )

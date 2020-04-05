@@ -10,6 +10,7 @@ module.exports = {
     require: true,
     graphql: false,
     process: false,
+    google: true,
   },
   parserOptions: {
     sourceType: 'module',
