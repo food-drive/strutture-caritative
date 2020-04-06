@@ -1,0 +1,32 @@
+name: Content change
+# This workflow is triggered on pushes to the repository.
+on: [repository_dispatch]
+
+jobs:
+  build:
+    name: Build, test and Deploy to GH Pages
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ['12']
+    env:
+      PROJECT_ID: ${{ secrets.PROJECT_ID }}
+      SERVICE_ACCOUNT: ${{ secrets.SERVICE_ACCOUNT }}
+      PRIVATE_KEY_ID: ${{ secrets.PRIVATE_KEY_ID }}
+      PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+      CLIENT_ID: ${{ secrets.CLIENT_ID }}
+      SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID }}
+      GATSBY_GOOGLE_MAPS_API_KEY: ${{ secrets.GATSBY_GOOGLE_MAPS_API_KEY }}
+    steps:
+      - name: Check out
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm install
+      - run: npm run build
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.ACTIONS_TOKEN }}
+          publish_dir: ./public
