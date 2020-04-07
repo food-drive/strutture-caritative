@@ -20,7 +20,6 @@ const Filters = () => {
   }
   const clearFilters = () => {
     dispatchFilter({clear: true})
-    console.log(inputRefs)
     Object.keys(filters).forEach(key => {
       inputRefs[key].current.value = ''
     })
