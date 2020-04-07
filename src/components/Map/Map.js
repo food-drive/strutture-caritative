@@ -33,30 +33,40 @@ const Map = () => {
     }
   }, [mapRef])
 
-  const createMarker = (lat, long) => {
+  const createMarker = (lat, long, title) => {
     const marker = new google.maps.Marker({
       map,
       position: new google.maps.LatLng(lat, long),
+      title,
     })
     return marker
   }
+
   useEffect(() => {
     if (map) {
       clearMarkers()
       const mapMarkers = []
       coordinates.forEach(
         ({denominazioneopt: title, latitudine, longitudine}) => {
-          const marker = createMarker(latitudine, longitudine)
-          marker.addListener('click', () => {
-            infoWindow.setContent(`${title}`)
-            infoWindow.open(map, marker)
-          })
+          const marker = createMarker(latitudine, longitudine, title)
           mapMarkers.push(marker)
         },
       )
       setMarkers(mapMarkers)
     }
   }, [map, coordinates])
+
+  useEffect(() => {
+    if (infoWindow) {
+      markers.forEach(marker => {
+        const {title} = marker
+        marker.addListener('click', () => {
+          infoWindow.setContent(`${title}`)
+          infoWindow.open(map, marker)
+        })
+      })
+    }
+  }, [infoWindow, markers])
 
   const onSelect = ({lat, lng}) => {
     if (searchMarker) searchMarker.setMap(null)

@@ -1,11 +1,18 @@
 export default (state, action) => {
-  const {key, value} = action
+  const {key, value, clear} = action
   if (key) {
-    const newState = {
+    return {
       ...state,
-      [key]: value,
+      [key]: {
+        ...state[key],
+        value,
+      },
     }
-    if (!value) delete newState[key]
+  } else if (clear) {
+    const newState = {}
+    Object.keys(state).forEach(key => {
+      newState[key] = {...state[key], value: ''}
+    })
     return newState
   } else return state
 }

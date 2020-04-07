@@ -14,30 +14,40 @@ const cols = [
   {key: 'telefonosedeoperativa', value: 'Telefono'},
 ]
 
-const filters = [
-  {key: 'denominazioneopt', label: 'Denominazione'},
-  {key: 'comune', label: 'Comune'},
-  {key: 'provincia', label: 'Provincia'},
-  {key: 'sedeoperativa', label: 'Indirizzo'},
-]
+const initialFilters = {
+  denominazioneopt: {
+    name: 'denominazioneopt',
+    label: 'Denominazione',
+    value: '',
+  },
+  comune: {name: 'comune', label: 'Comune', value: ''},
+  provincia: {name: 'provincia', label: 'Provincia', value: ''},
+  sedeoperativa: {
+    name: 'sedeoperativa',
+    label: 'Indirizzo',
+    value: '',
+  },
+}
 
 const DataProvider = ({data, children}) => {
-  const [activeFilters, dispatchFilter] = useReducer(reducer, {})
+  const [filters, dispatchFilter] = useReducer(reducer, initialFilters)
   const rows = useMemo(
     () =>
       data
         .map(({node}) => node)
         .filter(value =>
-          Object.keys(activeFilters).reduce(
-            (res, key) =>
-              res &&
-              value[key]
-                .toLowerCase()
-                .indexOf(activeFilters[key].toLowerCase()) !== -1,
-            true,
-          ),
+          Object.keys(filters)
+            .filter(key => filters[key].value)
+            .reduce(
+              (res, key) =>
+                res &&
+                value[key]
+                  .toLowerCase()
+                  .indexOf(filters[key].value.toLowerCase()) !== -1,
+              true,
+            ),
         ),
-    [data, activeFilters],
+    [data, filters],
   )
   const coordinates = useMemo(
     () => rows.filter(({latitudine, longitudine}) => latitudine && longitudine),
